@@ -1,0 +1,307 @@
+body {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: var(--text-color, #ffffff);
+  font-family: "Open Sans", sans-serif;
+}
+
+h1, h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.sticker {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: var(--button-color, #007bff);
+  color: var(--button-text-color, #ffffff);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.team-name {
+  width: 300px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.team-name:focus {
+  border-color: #007bff;
+}
+
+
+#newContent {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.character-count {
+  margin-left: 10px;
+  color: white;
+  font-size: 14px;
+  width: 20px;
+  text-align: right;
+}
+
+#nextButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: var(--button-text-color);
+  background-color: var(--button-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#nextButton:hover {
+  opacity: 0.8;
+}
+
+#timeContent {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.slider {
+  width: 200px;
+  margin-right: 10px;
+}
+
+#startButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: var(--button-text-color);
+  background-color: var(--button-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#startButton:hover {
+  opacity: 0.8;
+}
+
+#appContent {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.header {
+  background-color: #007bff;
+  width: calc(100% - 90px);
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* Изменяем высоту прямоугольника */
+}
+
+.time-container {
+  color: white;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.team-info-container {
+  width: calc(100% - 90px);
+  margin: 0 auto;
+}
+
+.team-name-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding-right: 20px;
+}
+
+.team-score {
+  margin-left: auto;
+  margin-right: 700px;
+}
+
+#team1NameDisplay,
+#team2NameDisplay {
+  margin-left: 5px;
+}
+
+@media (max-width: 600px) {
+  .team-score {
+    margin-right: 100px;
+  }
+}
+
+.team-line {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  margin: 10px 0;
+}
+
+.square {
+  width: 24px;
+  height: 24px;
+  background-color: blue;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.square i {
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+
+.period-text {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #007bff;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#stopButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: var(--button-text-color);
+  background-color: var(--button-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#stopButton:hover {
+  opacity: 0.8;
+}
+
+.winner-screen {
+  opacity: 0;
+  animation: fadeInColor 1s ease-in-out forwards;
+}
+
+.winner-text,
+.score-text {
+  opacity: 0;
+  color: white;
+  text-align: center;
+  animation: fadeInText 1s ease-in-out 1s forwards;
+}
+
+.winner-text {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.score-text {
+  font-size: 24px;
+}
+
+@keyframes fadeInColor {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.exit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: var(--button-text-color);
+  background-color: var(--button-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeInButton 1s ease-in-out 2s forwards;
+}
+
+.exit-button:hover {
+  opacity: 0.8;
+}
+
+@keyframes fadeInButton {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
