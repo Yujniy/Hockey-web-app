@@ -388,25 +388,10 @@ function showWinnerScreen(winnerTeam) {
 }
 
 function resetGame() {
-  // Сбрасываем счет и переменные
-  team1Score = 0;
-  team2Score = 0;
-  currentPeriod = 1;
-  isBreak = false;
-  isOvertime = false;
-
-  // Очищаем содержимое appContent
-  appContent.innerHTML = '';
-  appContent.style.display = 'none';
-
-  // Показываем начальный экран
-  const elements = document.querySelectorAll('h1, .sticker, .button');
-  elements.forEach(function(element) {
-    element.style.display = 'block';
-    element.classList.remove('animate__fadeOut');
-    element.classList.add('animate__fadeIn');
-  });
+  // Перезагружаем страницу
+  location.reload();
 }
+
 
 
 function disableScoreButtons() {
