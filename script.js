@@ -191,10 +191,11 @@ function pauseTimer() {
 
 function resumeTimer() {
   if (isPaused) {
-    startTimer();
+    startTimer(true);
     isPaused = false;
   }
 }
+
 
 function endGame() {
   clearInterval(gameTimer);
@@ -306,8 +307,8 @@ let currentPeriod = 1;
 let isBreak = false;
 let isOvertime = false;
 
-function startTimer() {
-  if (!isBreak) {
+function startTimer(skipSound = false) {
+  if (!isBreak && !skipSound) {
     periodStartAudio.play();
   }
   gameTimer = setInterval(updateTimer, 1000);
