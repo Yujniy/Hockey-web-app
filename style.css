@@ -311,3 +311,11 @@ h1, h2 {
     transform: translateY(0);
   }
 }
+
+#team1NameDisplay,
+#team2NameDisplay {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

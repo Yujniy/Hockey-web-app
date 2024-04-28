@@ -22,9 +22,8 @@ team2ScoreElement.addEventListener('click', toggleTeam2ScoreButton);
 
 
 function toggleTeam1ScoreButton() {
-  if (isBreak) return; // Выходим из функции, если идет перерыв
-
   const icon = team1PlusButton.querySelector('i');
+
   if (icon.classList.contains('fi-rr-plus-small')) {
     icon.classList.remove('fi-rr-plus-small');
     icon.classList.add('fi-rr-minus-small');
@@ -39,9 +38,8 @@ function toggleTeam1ScoreButton() {
 }
 
 function toggleTeam2ScoreButton() {
-  if (isBreak) return; // Выходим из функции, если идет перерыв
-
   const icon = team2PlusButton.querySelector('i');
+
   if (icon.classList.contains('fi-rr-plus-small')) {
     icon.classList.remove('fi-rr-plus-small');
     icon.classList.add('fi-rr-minus-small');
@@ -56,8 +54,8 @@ function toggleTeam2ScoreButton() {
 }
 
 
-
 function decrementTeam1Score() {
+  if (isBreak) return; // Предотвратить уменьшение счета во время перерыва
   if (team1Score > 0) {
     team1Score--;
     updateScore();
@@ -65,6 +63,7 @@ function decrementTeam1Score() {
 }
 
 function decrementTeam2Score() {
+  if (isBreak) return; // Предотвратить уменьшение счета во время перерыва
   if (team2Score > 0) {
     team2Score--;
     updateScore();
@@ -406,14 +405,12 @@ function disableScoreButtons() {
   team2ScoreElement.removeEventListener('click', toggleTeam2ScoreButton);
 }
 
-
 function enableScoreButtons() {
   team1PlusButton.addEventListener('click', incrementTeam1Score);
   team2PlusButton.addEventListener('click', incrementTeam2Score);
   team1ScoreElement.addEventListener('click', toggleTeam1ScoreButton);
   team2ScoreElement.addEventListener('click', toggleTeam2ScoreButton);
 }
-
 
 
 function incrementTeam1Score() {
@@ -458,7 +455,7 @@ function updateTimer() {
       if (isBreak) {
         // Перерыв закончился
         isBreak = false;
-        enableScoreButtons(); // Включаем кнопки добавления голов и переключения +/-
+        enableScoreButtons(); // Включаем кнопки добавления голов
         
         if (isOvertime) {
           // Начинаем овертайм
@@ -489,7 +486,7 @@ function updateTimer() {
             periodTextElement.textContent = 'Перерыв перед овертаймом';
             gameTime = breakTime * 60;
             isBreak = true;
-            disableScoreButtons(); // Отключаем кнопки добавления голов и переключения +/-
+            disableScoreButtons(); // Отключаем кнопки добавления голов
             startTimer();
           } else {
             // Матч закончился, определяем победителя
@@ -501,7 +498,7 @@ function updateTimer() {
           periodTextElement.textContent = 'Перерыв';
           gameTime = breakTime * 60;
           isBreak = true;
-          disableScoreButtons(); // Отключаем кнопки добавления голов и переключения +/-
+          disableScoreButtons(); // Отключаем кнопки добавления голов
           startTimer();
         }
       }
@@ -569,23 +566,21 @@ startTimerButton.addEventListener('click', () => {
         team1PlusButton.addEventListener('click', incrementTeam1Score);
         team2PlusButton.addEventListener('click', incrementTeam2Score);
       }
-function disableScoreButtons() {
-  team1PlusButton.removeEventListener('click', incrementTeam1Score);
-  team1PlusButton.removeEventListener('click', decrementTeam1Score);
-  team2PlusButton.removeEventListener('click', incrementTeam2Score);
-  team2PlusButton.removeEventListener('click', decrementTeam2Score);
-  team1ScoreElement.removeEventListener('click', toggleTeam1ScoreButton);
-  team2ScoreElement.removeEventListener('click', toggleTeam2ScoreButton);
-}
-
+      function disableScoreButtons() {
+        team1PlusButton.removeEventListener('click', incrementTeam1Score);
+        team1PlusButton.removeEventListener('click', decrementTeam1Score);
+        team2PlusButton.removeEventListener('click', incrementTeam2Score);
+        team2PlusButton.removeEventListener('click', decrementTeam2Score);
+        team1ScoreElement.removeEventListener('click', toggleTeam1ScoreButton);
+        team2ScoreElement.removeEventListener('click', toggleTeam2ScoreButton);
+      }
       
-function enableScoreButtons() {
-  team1PlusButton.addEventListener('click', incrementTeam1Score);
-  team2PlusButton.addEventListener('click', incrementTeam2Score);
-  team1ScoreElement.addEventListener('click', toggleTeam1ScoreButton);
-  team2ScoreElement.addEventListener('click', toggleTeam2ScoreButton);
-}
-
+      function enableScoreButtons() {
+        team1PlusButton.addEventListener('click', incrementTeam1Score);
+        team2PlusButton.addEventListener('click', incrementTeam2Score);
+        team1ScoreElement.addEventListener('click', toggleTeam1ScoreButton);
+        team2ScoreElement.addEventListener('click', toggleTeam2ScoreButton);
+      }
     });
   });
 });
