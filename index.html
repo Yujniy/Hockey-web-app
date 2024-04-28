@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Судья настолького хоккея</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <link rel='stylesheet'
+    href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <h1>Судья настольного хоккея</h1>
   <video class="sticker" autoplay loop muted playsinline>
@@ -32,57 +36,69 @@
     <button id="nextButton" class="animate__animated" style="display: none;">Далее</button>
   </div>
 
-<div id="timeContent" style="display: none;">
-  <h2 class="animate__animated">Выберите время периода</h2>
-  <div class="slider-container">
-    <input type="range" min="1" max="20" value="5" class="slider animate__animated" id="periodSlider">
-    <span id="periodValue" class="animate__animated">5</span>
+  <div id="timeContent" style="display: none;">
+    <h2 class="animate__animated">Выберите время периода</h2>
+    <div class="slider-container">
+      <input type="range" min="1" max="20" value="5" class="slider animate__animated" id="periodSlider">
+      <span id="periodValue" class="animate__animated">5</span>
+    </div>
+    <h2 class="animate__animated">Выберите время перерыва</h2>
+    <div class="slider-container">
+      <input type="range" min="1" max="10" value="2" class="slider animate__animated" id="breakSlider">
+      <span id="breakValue" class="animate__animated">2</span>
+    </div>
+    <h2 class="animate__animated">Выберите количество периодов</h2>
+    <div class="slider-container">
+      <input type="range" min="1" max="10" value="3" class="slider animate__animated" id="periodCountSlider">
+      <span id="periodCountValue" class="animate__animated">3</span>
+    </div>
+    <button id="startButton" class="animate__animated">Начать матч</button>
   </div>
-  <h2 class="animate__animated">Выберите время перерыва</h2>
-  <div class="slider-container">
-    <input type="range" min="1" max="10" value="2" class="slider animate__animated" id="breakSlider">
-    <span id="breakValue" class="animate__animated">2</span>
-  </div>
-  <h2 class="animate__animated">Выберите количество периодов</h2>
-  <div class="slider-container">
-    <input type="range" min="1" max="10" value="3" class="slider animate__animated" id="periodCountSlider">
-    <span id="periodCountValue" class="animate__animated">3</span>
-  </div>
-  <button id="startButton" class="animate__animated">Начать матч</button>
-</div>
 
 
-<div id="appContent" style="display: none;">
-  <div class="header animate__animated animate__fadeIn">
-    <div class="time-container">
-      <span id="gameTime"></span>
+  <div id="appContent" style="display: none;">
+    <div class="header animate__animated animate__fadeIn">
+      <div class="time-container">
+        <span id="gameTime"></span>
+      </div>
+    </div>
+    <div class="team-info-container animate__animated animate__fadeIn">
+      <div class="team-name-container">
+        <span id="team1NameDisplay"></span>
+        <span class="team-score" id="team1Score">0</span>
+        <div class="square" id="team1Button">
+          <i class="fi fi-rr-plus-small"></i>
+        </div>
+      </div>
+      <div class="team-line"></div>
+      <div class="team-name-container">
+        <span id="team2NameDisplay"></span>
+        <span class="team-score" id="team2Score">0</span>
+        <div class="square" id="team2Button">
+          <i class="fi fi-rr-plus-small"></i>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="period-text animate__animated animate__fadeIn">1 период</div>
+    <div class="footer animate__animated animate__fadeIn">
+      <button id="stopButton">Остановить матч</button>
     </div>
   </div>
-  <div class="team-info-container animate__animated animate__fadeIn">
-<div class="team-name-container">
-  <span id="team1NameDisplay"></span>
-  <span class="team-score" id="team1Score">0</span>
-  <div class="square" id="team1Button">
-    <i class="fi fi-rr-plus-small"></i>
-  </div>
-</div>
-<div class="team-line"></div>
-<div class="team-name-container">
-  <span id="team2NameDisplay"></span>
-  <span class="team-score" id="team2Score">0</span>
-  <div class="square" id="team2Button">
-    <i class="fi fi-rr-plus-small"></i>
+
+  <div id="confirmationPopup" class="popup">
+  <div class="popup-content">
+    <h3>Закончить игру?</h3>
+    <div class="button-container">
+      <button id="yesButton">Да</button>
+      <button id="noButton">Нет</button>
+    </div>
   </div>
 </div>
 
-  </div>
-
-  <div class="period-text animate__animated animate__fadeIn">1 период</div>
-  <div class="footer animate__animated animate__fadeIn">
-    <button id="stopButton">Остановить матч</button>
-  </div>
-</div>
 
   <script src="script.js"></script>
 </body>
+
 </html>

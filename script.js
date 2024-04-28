@@ -210,6 +210,7 @@ function endGame() {
   }
 }
 
+
 function showDrawScreen() {
   const appContent = document.getElementById('appContent');
   const appElements = appContent.querySelectorAll('.animate__animated');
@@ -229,7 +230,7 @@ function showDrawScreen() {
       appContent.classList.add('draw-screen');
       
       const drawText = document.createElement('h2');
-      drawText.textContent = `Ничья команд ${team1Name} и ${team2Name}!`;
+      drawText.textContent = 'Ничья';
       drawText.classList.add('draw-text');
       
       const scoreText = document.createElement('p');
@@ -247,6 +248,7 @@ function showDrawScreen() {
     });
   });
 }
+
 
 
 nextButton.addEventListener('click', function() {
@@ -290,6 +292,7 @@ stopButton.addEventListener('click', () => {
     stopButton.textContent = 'Возобновить матч';
   }
 });
+
 
 
 const periodSlider = document.getElementById('periodSlider');
@@ -583,4 +586,31 @@ startTimerButton.addEventListener('click', () => {
       }
     });
   });
+  const gameTimeElement = document.getElementById('gameTime');
+const confirmationPopup = document.getElementById('confirmationPopup');
+const yesButton = document.getElementById('yesButton');
+const noButton = document.getElementById('noButton');
+
+gameTimeElement.addEventListener('click', () => {
+  confirmationPopup.style.display = 'flex';
+});
+
+yesButton.addEventListener('click', () => {
+  confirmationPopup.classList.add('hide');
+  setTimeout(() => {
+    confirmationPopup.style.display = 'none';
+    confirmationPopup.classList.remove('hide');
+    endGame();
+  }, 300);
+});
+
+noButton.addEventListener('click', () => {
+  confirmationPopup.classList.add('hide');
+  setTimeout(() => {
+    confirmationPopup.style.display = 'none';
+    confirmationPopup.classList.remove('hide');
+  }, 300);
+});
+
+
 });
